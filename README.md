@@ -36,9 +36,9 @@ cp -r ~/.claude/skills/semi-auto-collab ~/.codex/skills/semi-auto-collab
 
 前提：專案是 git 倉庫，並且有一份 `HANDOFF.md`，裡面寫著 Task 的負責人、檔案範圍與驗收標準。
 
-## 可選的外部規範
+## 搭配你自己的品質規範
 
-流程中提到的 `testing-policy.md`、`frontend-codex.md`、`product-security-qa.md` 是作者自己的品質規範檔，不包含在本倉庫。你可以換成自己的規範；沒有的話，檢查表對應項目寫「不適用：原因」即可。
+流程會在開工（B1）與收尾（C1）讀取專案或個人的品質規範，例如測試規範、前端設計規範、資安 QA 規範，或你在 `CLAUDE.md`／`AGENTS.md` 指定的技能。本倉庫不附這些規範；沒有的話，檢查表對應項目寫「不適用：原因」即可，資安與截圖自檢會改用流程內建的通用檢查。
 
 ## 授權
 
