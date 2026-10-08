@@ -12,7 +12,7 @@ Claude 當「工頭」：把已核可計畫中的單一 Task 用 `codex exec` �
 | `FOREMAN.md` | Claude（工頭）的逐步檢查表 |
 | `BUILDER.md` | Codex（施工方）的施工規則 |
 | `scripts/dispatch.mjs` | 包裝 `codex exec`，固定沙盒、網路關閉、逾時與 token 紀錄 |
-| `scripts/watch-codex.ps1` | 即時觀看 Codex 正在做什麼（Windows PowerShell） |
+| `scripts/watch-codex.ps1` | 即時觀看 Codex 正在做什麼（Windows PowerShell）。不給專案名時自動挑所有專案中最近一次交派 |
 | `templates/` | `HANDOFF.md` Task 區塊、交派指令、報告範本 |
 | `agents/openai.yaml` | Codex 端的顯示名稱與「不自動觸發」設定 |
 
@@ -39,3 +39,7 @@ cp -r ~/.claude/skills/semi-auto-collab ~/.codex/skills/semi-auto-collab
 ## 可選的外部規範
 
 流程中提到的 `testing-policy.md`、`frontend-codex.md`、`product-security-qa.md` 是作者自己的品質規範檔，不包含在本倉庫。你可以換成自己的規範；沒有的話，檢查表對應項目寫「不適用：原因」即可。
+
+## 授權
+
+[MIT](LICENSE)：可自由使用、修改與再發布，保留版權聲明即可。

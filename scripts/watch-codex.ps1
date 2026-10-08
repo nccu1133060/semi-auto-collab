@@ -1,9 +1,16 @@
-﻿# 即時觀看最新一次 Codex 交派在做什麼。用法：powershell -File watch-codex.ps1 [專案名，預設為目前資料夾名]
-param([string]$Project = (Split-Path -Leaf (Get-Location)))
+﻿# 即時觀看最新一次 Codex 交派在做什麼。
+# 用法：powershell -File watch-codex.ps1 [專案名]
+#   不給專案名：在所有專案中挑最近一次交派；給專案名：只看該專案。
+param(
+  [string]$Project,
+  [string]$LogRoot = (Join-Path $HOME ".claude\semi-auto-logs")
+)
 [Console]::OutputEncoding = [Text.Encoding]::UTF8
-$dir = Join-Path $HOME ".claude\semi-auto-logs\$Project"
-$file = Get-ChildItem $dir -Filter *.events.jsonl | Sort-Object LastWriteTime -Descending | Select-Object -First 1
-"觀看：$($file.Name)（Ctrl+C 結束）`n"
+$dir = if ($Project) { Join-Path $LogRoot $Project } else { $LogRoot }
+$file = Get-ChildItem $dir -Filter *.events.jsonl -Recurse -ErrorAction SilentlyContinue |
+  Sort-Object LastWriteTime -Descending | Select-Object -First 1
+if (-not $file) { "找不到交派紀錄：$dir（先執行一次交派，或確認專案名）"; exit 1 }
+"觀看：$($file.Directory.Name) / $($file.Name)（Ctrl+C 結束）`n"
 Get-Content $file.FullName -Wait -Encoding UTF8 | ForEach-Object {
   try { $e = $_ | ConvertFrom-Json } catch { return }
   $i = $e.item
