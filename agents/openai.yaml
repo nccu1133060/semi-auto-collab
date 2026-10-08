@@ -1,0 +1,5 @@
+interface:
+  display_name: "Semi-Auto Collab"
+  short_description: "Claude 工頭 × Codex 施工的半自動協作流程"
+policy:
+  allow_implicit_invocation: false
